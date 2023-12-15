@@ -1,5 +1,6 @@
 package com.example.listview_with_widgets;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,27 +30,48 @@ public class List extends Fragment {
 
         ListView myListView = view.findViewById(R.id.myListView);
 
-        // Datos a mostrar en el ListView
-        String[] elementos = {"Horas"};
+        String[] elementos = {"Horas", "CheckBox", "RadioGroup","Linear Percent","URL"};
 
-        // Crear un adaptador para el ListView
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, elementos);
 
-        // Establecer el adaptador en el ListView
         myListView.setAdapter(adapter);
 
-        // Manejar el clic en un elemento del ListView
         myListView.setOnItemClickListener((parent, view1, position, id) -> {
-            if (position == 0) { // Si se hace clic en "Horas" (posición 0)
-                // Ir al fragment_hours.xml al hacer clic en "Horas"
-                Fragment fragment = new Hours(); // Reemplaza HoursFragment con el nombre de tu fragmento Hours
+            if (position == 0) {
+                Fragment fragmentHours = new Hours();
                 getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, fragment)
+                        .replace(R.id.fragment_container, fragmentHours)
+                        .addToBackStack(null)
+                        .commit();
+            }
+            if (position == 1) {
+                Fragment fragmentCheckbox = new CheckBoxs();
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragmentCheckbox)
+                        .addToBackStack(null)
+                        .commit();
+            }
+            if (position == 2) {
+                Fragment fragmentRadioGroups = new RadioGroups();
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragmentRadioGroups)
+                        .addToBackStack(null)
+                        .commit();
+            }
+            if (position == 3) {
+                Fragment fragmentLinearPercent = new LinearPercent();
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragmentLinearPercent)
+                        .addToBackStack(null)
+                        .commit();
+            }
+            if (position == 4) {
+                Fragment fragmentLinearPercent = new URL();
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragmentLinearPercent)
                         .addToBackStack(null)
                         .commit();
             }
         });
     }
-
-
 }
