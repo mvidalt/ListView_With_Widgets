@@ -1,6 +1,5 @@
 package com.example.listview_with_widgets;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,45 +29,53 @@ public class List extends Fragment {
 
         ListView myListView = view.findViewById(R.id.myListView);
 
-        String[] elementos = {"Horas", "CheckBox", "RadioGroup","Linear Percent","URL"};
+        String[] elementos = {"Horas", "CheckBox", "RadioGroup", "Linear Percent", "URL", "OverLap", "ScrollView", "IMEDEMO1","ListView","Alert Dialog"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, elementos);
 
         myListView.setAdapter(adapter);
 
         myListView.setOnItemClickListener((parent, view1, position, id) -> {
-            if (position == 0) {
-                Fragment fragmentHours = new Hours();
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, fragmentHours)
-                        .addToBackStack(null)
-                        .commit();
+            Fragment fragment = null;
+
+            switch (position) {
+                case 0:
+                    fragment = new Hours();
+                    break;
+                case 1:
+                    fragment = new CheckBoxs();
+                    break;
+                case 2:
+                    fragment = new RadioGroups();
+                    break;
+                case 3:
+                    fragment = new LinearPercent();
+                    break;
+                case 4:
+                    fragment = new URL();
+                    break;
+                case 5:
+                    fragment = new OverLap();
+                    break;
+                case 6:
+                    fragment = new ScrollView();
+                    break;
+                case 7:
+                    fragment = new IMEDemo1();
+                    break;
+                case 8:
+                    fragment = new ListViewDemo();
+                    break;
+                case 9:
+                    fragment = new AlertDialogDemo();
+                    break;
+                default:
+                    break;
             }
-            if (position == 1) {
-                Fragment fragmentCheckbox = new CheckBoxs();
+
+            if (fragment != null) {
                 getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, fragmentCheckbox)
-                        .addToBackStack(null)
-                        .commit();
-            }
-            if (position == 2) {
-                Fragment fragmentRadioGroups = new RadioGroups();
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, fragmentRadioGroups)
-                        .addToBackStack(null)
-                        .commit();
-            }
-            if (position == 3) {
-                Fragment fragmentLinearPercent = new LinearPercent();
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, fragmentLinearPercent)
-                        .addToBackStack(null)
-                        .commit();
-            }
-            if (position == 4) {
-                Fragment fragmentLinearPercent = new URL();
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, fragmentLinearPercent)
+                        .replace(R.id.fragment_container, fragment)
                         .addToBackStack(null)
                         .commit();
             }

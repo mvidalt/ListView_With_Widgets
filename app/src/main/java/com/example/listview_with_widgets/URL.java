@@ -27,7 +27,7 @@ public class URL extends Fragment {
         View view = inflater.inflate(R.layout.fragment_u_r_l, container, false);
 
         EditText editText = view.findViewById(R.id.entry);
-        editText.setText("https://www.google.com"); // URL predeterminada
+        editText.setText("https://www.google.com");
 
         Button okButton = view.findViewById(R.id.ok);
         okButton.setOnClickListener(v -> {
@@ -38,7 +38,7 @@ public class URL extends Fragment {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("Abrir con...");
 
-            // Agregar opciones manualmente al diálogo
+
             builder.setPositiveButton("Chrome", (dialog, which) -> {
                 intent.setPackage("com.android.chrome");
                 startActivity(intent);
